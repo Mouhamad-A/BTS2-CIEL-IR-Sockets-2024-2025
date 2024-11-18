@@ -20,7 +20,11 @@ bool NetworkGame::HostGame()
 {
 	// À compléter :
 	// 1. Configurer le listener TCP sur NetworkPort
+	_listener.listen(NetworkPort);
+
 	// 2. Ajouter le listener au sélecteur
+	_selecto.add
+
 	// 3. Définir _isServer à true
 	return true;
 }
