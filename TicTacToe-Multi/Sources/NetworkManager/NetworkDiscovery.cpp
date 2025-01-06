@@ -61,11 +61,12 @@ void NetworkDiscovery::Update()
 	{
 		// À compléter :
 		// 1. Vérifier si l'écart de temps entre maintenant et la dernière déclaration de temps est supérieure ou égale à DeclareGameServerDelayMs
-		if (>= DeclareGameServerDelayMs)
+		if ( _lastDeclareGameServerTimeMs >= DeclareGameServerDelayMs)
 		// 2. Créer un paquet avec MagicPacket et _localServerName
-		uint32_t magicpacket;
+		sf::Packet packet;
+		packet << MagicPacket << _localServerName;
 		// 3. Envoyer le paquet en broadcast
-		
+		_socket.send(packet, sf::IpAddress::Broadcast, NetworkPort);
 	}
 
 	while(_socketSelector.wait(sf::microseconds(1)) && _socketSelector.isReady(_socket))
